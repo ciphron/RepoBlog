@@ -1,0 +1,8 @@
+<html>
+<head>
+ <title>[% title %]</title>
+</head>
+<body bgcolor="#ffffcc">
+<b>[% title %]</b>
+<hr size="1" noshade />
+<p />

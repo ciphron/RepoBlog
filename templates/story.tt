@@ -1,0 +1,14 @@
+<h2>[% post.cdate.dw %], [% post.cdate.da %] [% post.cdate.mo %] [% post.cdate.yr %] [% post.mdate.ti %] UTC [% post.mdate.utc_offset %]</h2>
+<h3>
+Last modified on [% post.mdate.dw %], [% post.mdate.da %] [% post.mdate.mo %] [% post.mdate.yr %] [% post.mdate.ti %] UTC [% post.mdate.utc_offset %]
+<br/>
+<p>
+<a name="[% fn %]"><b>[% post.title %]</b></a>
+</h3>
+<br/>
+[% post.body %]
+</p>
+<p align="right">
+<i>[<a href="[% post.url %][% post.path %]">[% post.path %]</a>] 
+<a href="[% post.url %]/[% post.cdate.yr %]/[% post.cdate.mo_num %]/[% post.cdate.da %]#[% post.fn %]">permanent link</a></i>
+</p>

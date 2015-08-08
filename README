@@ -1,0 +1,19 @@
+RepoBlog is a blog written in perl that supports showing revisions of blog posts based on commits in a repository. Blog posts are text files. Committing changes to a file results in that revision being accessible to a user who views the blog.
+
+RepoBlog is licensed under the GPL v3 (see LICENSE file) with the exception of one file RepoBlog/Blog.pm which is licensed under a separate license found at http://blosxom.sourceforge.net/license.html. This is because RepoBlog is derived from Blosxom (http://blosxom.sourceforge.net).
+
+To set up RepoBlog first change the constant CONFIG_FILE in RepoBlog/Handler.pm to point to the location of the configuration file blog.config. Then edit blog.config to suit your needs. You need to specify the directory where the site (i.e. the templates directory) is located along with the directory where the posts reside. Furthermore you need to specify the URL of the blog along with its title. Finally you need to specify where the fetch.pl script can be found. The reason for the fetch.pl script is that the Git::Repository module which we use spawns processes in a way that is not supported by handlers in Apache2 so we need to use the Apache2 means to spawn a separate process which in turn makes calls to Git::Repository. Note that you must have Git::Repository installed. Plack and mod_perl are also necessary on your system, assuming you are using Apache2. If you are using Apache2 then add the following to your configuration
+
+PerlModule RepoBlog::Handler
+<Location /blog>
+   SetHandler perl-script
+   PerlHandler RepoBlog::Handler
+</Location>
+
+where /blog is the location you wish the blog to be accessed at.
+
+You need to place the RepoBlog directory which contains the perl modules in one of the directories that perl searches for the inclusion of modules i.e. one that is specified in @INC.
+
+You place your posts in the posts directory specified by the POSTS_DIR setting in blog.config. Each post is a text file with the extension .txt. The content of such files can be HTML. Create an empty git repository in the posts directory and commit changes to each post file as required. RepoBlog queries the repository and automatically shows all revisions made to a file. It lists the revisions and allows the user to view each revision. By default the latest revision is displayed.
+
+To change the HTML presentation, edit the files in the templates directory to your needs.
